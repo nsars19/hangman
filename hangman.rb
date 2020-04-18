@@ -36,10 +36,7 @@ class Board
     check_guess guess
   end
 
-  def display_board
-    a, b, c = @board.join(" "), @guesses_left, @letters_guessed.join(" ")
-    puts "#{a} | guesses left: #{b} | letters guessed: #{c}"
-  end
+  
 
   private
   def check_guess guess
