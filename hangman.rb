@@ -1,5 +1,4 @@
 # TODO
-# --add game end conditions
 # --add method to run whole game
 # -Serialization
 # --save option at end of turn
