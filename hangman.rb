@@ -75,4 +75,4 @@ class Board
   end
 end
 
-Board.new.play_game
+#Board.new.play_game
