@@ -1,5 +1,4 @@
 # TODO
-# --add method to run whole game
 # -Serialization
 # --save option at end of turn
 # --load option at beginning of game
@@ -18,6 +17,15 @@ class Board
     @letters_guessed = []
     @board           = []
     create_board
+  end
+
+  def play_game
+    puts "Type a letter to start playing hangman!"
+    until game_over?
+      make_guess gets.strip
+      display_board
+    end
+    puts "#{@word} was the secret word"
   end
 
   def make_guess guess
@@ -70,3 +78,5 @@ class Board
     win? || lose? ? true : false
   end
 end
+
+Board.new.play_game
