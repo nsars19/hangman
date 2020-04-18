@@ -37,9 +37,8 @@ class Board
   end
 
   def display_board
-    puts "#{@board.join(" ")} | guesses left: #{
-            @guesses_left   } | letters guessed: #{
-            @letters_guessed.join(" ")}"
+    a, b, c = @board.join(" "), @guesses_left, @letters_guessed.join(" ")
+    puts "#{a} | guesses left: #{b} | letters guessed: #{c}"
   end
 
   private
