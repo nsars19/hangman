@@ -1,3 +1,10 @@
+# TODO
+# --add game end conditions
+# --add method to run whole game
+# -Serialization
+# --save option at end of turn
+# --load option at beginning of game
+
 class Board
   attr_accessor :word
   
@@ -6,7 +13,6 @@ class Board
     word = word[0..-3]
   end.filter { |word| word.size >= 5 && word.size <= 12 }
   
-
   def initialize
     @word            = get_random_word
     @guesses_left    = 6
@@ -45,11 +51,23 @@ class Board
 
   def create_board
     board_size = @word.length
-    board_size.times { |i| @board << '_'}
+    board_size.times { |i| @board << '_' }
     @board
   end
 
   def get_random_word
     @@word_list[rand(@@word_list.size)].downcase
+  end
+
+  def win?
+    return true if @board.join == @word; false
+  end
+
+  def lose?
+    return true if @guesses_left == 0; false
+  end
+
+  def game_over?
+    win? || lose? ? true : false
   end
 end
