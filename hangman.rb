@@ -4,8 +4,6 @@
 # --load option at beginning of game
 
 class Board
-  attr_accessor :word
-  
   # Remove newline & carriage return chars. from each word
   @@word_list = File.open('words.txt', 'r').map do |word|
     word = word[0..-3]
