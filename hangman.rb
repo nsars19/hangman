@@ -11,14 +11,13 @@ class Board
     word = word[0..-3]
   end.filter { |word| word.size >= 5 && word.size <= 12 }
 
-  def initialize loaded_game = false
-    @loaded_game     = loaded_game
+  def initialize
     @word            = get_random_word
     @guesses_left    = 6
     @letters_guessed = []
     @board           = []
     create_board    if @board.empty?
-    game_start  unless @loaded_game
+    game_start
   end
   
   private
