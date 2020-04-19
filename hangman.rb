@@ -9,7 +9,7 @@ class Board
   @@word_list = File.open('words.txt', 'r').map do |word|
     word = word[0..-3]
   end.filter { |word| word.size >= 5 && word.size <= 12 }
-  
+
   def initialize
     @word            = get_random_word
     @guesses_left    = 6
@@ -27,7 +27,7 @@ class Board
   
   private
   def play_game
-    puts "Type a letter to start playing hangman! or type 'save' to save and exit mid-game"
+    puts "Type a letter to start playing hangman! or type 'save' to save and exit mid-game."
     until game_over?
       make_guess gets.strip
       display_board
@@ -36,11 +36,27 @@ class Board
   end
 
   def show_saved_games
-    
+    puts Dir.entries "./saves"
+
   end
 
   def save_and_exit
-    p self.to_json
+    Dir.mkdir('saves') unless Dir.exists?('saves')
+
+    vars_to_save = {
+      :board           => @board,
+      :guesses_left    => @guesses_left,
+      :word            => @word,
+      :letters_guessed => @letters_guessed
+    }
+
+    time = Time.new.strftime("%m%d%Y_%k%M%S")
+    filename = "./saves/#{time}.json"
+
+    File.open(filename, 'w') do |file|
+      file.puts vars_to_save.to_json
+    end
+
     exit
   end
   def make_guess guess
