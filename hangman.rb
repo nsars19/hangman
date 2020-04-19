@@ -113,8 +113,7 @@ class Board
   end
 
   def create_board
-    board_size = @word.length
-    board_size.times { |i| @board << '_' }
+    @word.length.times { |i| @board << '_' }
   end
 
   def get_random_word
