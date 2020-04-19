@@ -2,6 +2,7 @@
 # -Serialization
 # --save option at end of turn
 # --load option at beginning of game
+require 'json'
 
 class Board
   # Remove newline & carriage return chars. from each word
@@ -17,16 +18,33 @@ class Board
     create_board
   end
 
+  def game_start
+    puts "Type 'play' to start a new game, or type 'load' to load a saved game."
+    start_choice = gets.chomp
+    show_saved_games if start_choice == 'load'
+    play_game        if start_choice == 'play'
+  end
+  
+  private
   def play_game
-    puts "Type a letter to start playing hangman!"
+    puts "Type a letter to start playing hangman! or type 'save' to save and exit mid-game"
     until game_over?
       make_guess gets.strip
       display_board
     end
-    puts "#{@word} was the secret word"
+    puts "#{@word} was the secret word."
   end
 
+  def show_saved_games
+    
+  end
+
+  def save_and_exit
+    p self.to_json
+    exit
+  end
   def make_guess guess
+    save_and_exit if guess == 'save'
     until !@letters_guessed.include?(guess) && guess.length == 1
       puts "Please select a single letter that you have not already chosen:"
       guess = gets.chomp
@@ -41,7 +59,6 @@ class Board
     puts "#{a} | guesses left: #{b} | letters guessed: #{c}"
   end 
 
-  private
   def check_guess guess
     update_board(guess) if @word.include? guess
     @guesses_left -= 1 if !@word.include? guess
@@ -75,4 +92,4 @@ class Board
   end
 end
 
-Board.new.play_game
+Board.new.game_start
