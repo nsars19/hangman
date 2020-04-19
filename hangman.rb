@@ -67,7 +67,7 @@ class Board
   def save_and_exit
     Dir.mkdir('saves') unless Dir.exists?('saves')
 
-    vars_to_save = {
+    variables_to_save = {
       :board           => @board,
       :guesses_left    => @guesses_left,
       :word            => @word,
@@ -78,7 +78,7 @@ class Board
     filename = "./saves/#{time}.json"
 
     File.open(filename, 'w') do |file|
-      file.puts vars_to_save.to_json
+      file.puts variables_to_save.to_json
     end
 
     exit
@@ -86,6 +86,7 @@ class Board
 
   def make_guess guess
     save_and_exit if guess == 'save'
+
     until !@letters_guessed.include?(guess) && guess.length == 1
       puts "Please select a single letter that you have not already chosen:"
       guess = gets.chomp
