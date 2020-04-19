@@ -1,6 +1,3 @@
-# TODO
-# -Serialization
-# --load option at beginning of game
 require 'json'
 
 class Board
