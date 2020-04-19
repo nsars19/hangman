@@ -13,7 +13,7 @@ class Board
     @guesses_left    = 6
     @letters_guessed = []
     @board           = []
-    create_board    if @board.empty?
+    create_board
     game_start
   end
   
