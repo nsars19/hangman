@@ -29,6 +29,7 @@ class Board
       make_guess gets.strip
       display_board
     end
+    puts "#{@word} was the secret word."
   end
 
   def game_start
